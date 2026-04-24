@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies
+      - npm install
+
+  build:
+    commands:
+      - echo Build started
+
+  post_build:
+    commands:
+      - echo Deploying to EC2
+      - ssh ec2-user@YOUR_PUBLIC_IP "cd /home/ec2-user && pm2 restart app || pm2 start app.js"
